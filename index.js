@@ -24,6 +24,9 @@ app.use('/services', serviceRoute)
 app.use('/category', categoryRoute)
 app.use('/coupons', couponsRoute)
 app.use('/staffs', staffsRoute)
+app.use('/', (req,res)=>{
+	res.send({message:"Welcome"})
+})
 
 const PORT = process.env.PORT || 5001
 mongoose
