@@ -40,7 +40,7 @@ const userController = {
 
   // Sign up by username
   signup: async (req, res) => {
-    const { fullName, email, username, password, confirmPassword } = req.body;
+    const { password,...restData} = req.body;
 
     try {
       const existingUser = await userMessage.findOne({ username });
@@ -57,15 +57,14 @@ const userController = {
       const hashedPassword = await bcryptjs.hash(password, 12);
 
       const result = await userMessage.create({
-        username,
-        email,
         password: hashedPassword,
-        fullName,
+        roll: 'User',
+        ...restData
       });
 
       const token = jwt.sign(
         { username: result.username, id: result._id },
-        "test",
+        result.roll,
         {
           expiresIn: "1h",
         }

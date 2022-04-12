@@ -6,7 +6,8 @@ const userSchema = mongoose.Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   avatar: String,
-  phone : Number
+  phone : Number,
+  roll: { type: String, default: 'Guest'}
 });
 
 const userMessage = mongoose.model("UserMessage", userSchema);
