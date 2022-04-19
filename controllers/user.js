@@ -25,8 +25,8 @@ const userController = {
           .json({ message: { error: "The password was incorrect." } });
 
       const token = jwt.sign(
-        { email: existingUser.email, id: existingUser._id },
-        "sign in",
+        { email: existingUser.email,role: existingUser.role,password: existingUser.password ,id: existingUser._id },
+        'authentication',
         { expiresIn: "1h" }
       );
 
@@ -58,13 +58,12 @@ const userController = {
 
       const result = await userMessage.create({
         password: hashedPassword,
-        roll: 'User',
         ...restData
       });
 
       const token = jwt.sign(
-        { username: result.username, id: result._id },
-        result.roll,
+        { username: result.username,role: existingUser.role,password: existingUser.password , id: result._id },
+        'authentication',
         {
           expiresIn: "1h",
         }
