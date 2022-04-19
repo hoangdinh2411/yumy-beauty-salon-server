@@ -28,7 +28,7 @@ app.use('/', (req,res)=>{
 	res.send({message:"Welcome"})
 })
 
-const PORT = process.env.PORT || 5001
+const PORT = 5001
 mongoose
     .connect("mongodb+srv://hoang2411:hoang2411@yumybeauty.rk0xb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
         useNewUrlParser: true,
